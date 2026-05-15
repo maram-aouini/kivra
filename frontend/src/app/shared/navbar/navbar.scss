@@ -57,3 +57,44 @@ mat-toolbar {
   font-weight: 700;
   letter-spacing: 2px;
 }
+
+
+.user-profile-btn {
+  display: flex;
+  align-items: center;
+  /* Rimuoviamo max-width fisso per maggiore flessibilità */
+  /* max-width: 200px; */
+
+  .username {
+    display: inline-block;
+    /* Rimuoviamo max-width fisso per maggiore flessibilità */
+    /* max-width: 100px; */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Aggiunge i puntini sospensivi (...) */
+    white-space: nowrap;
+    vertical-align: middle;
+    /* Aggiungiamo flex-shrink per permettere al testo di ridursi */
+    flex-shrink: 1;
+    min-width: 0; /* Permette al testo di ridursi oltre il suo contenuto intrinseco */
+    margin-left: 4px; /* Spazio tra icona e testo */
+    margin-right: 0; /* Rimuoviamo il margin-right qui, gestito dal gap del toolbar */
+  }
+}
+
+@media (max-width: 600px) {
+  .greeting {
+    display: none; /* Nasconde "Ciao," sui telefoni per risparmiare spazio */
+  }
+
+  /* Riduci il padding dei pulsanti sulla navbar per schermi piccoli */
+  mat-toolbar button[mat-button] {
+    padding: 0 8px; /* Riduci il padding orizzontale */
+    min-width: unset; /* Permetti al pulsante di ridursi */
+  }
+
+  .user-profile-btn .username {
+    max-width: 80px; /* Limite massimo per username su mobile */
+  }
+
+}
+}

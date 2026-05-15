@@ -302,3 +302,47 @@
     color: #e0e0e0;
   }
 }
+
+/* Media Query per Smartphone */
+@media (max-width: 768px) {
+  .overview-container {
+    padding: 16px;
+  }
+
+  /* Le statistiche passano da 4 a 2 colonne */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px;
+  }
+
+  /* Le card dei contenuti (In corso/Recenti) diventano più piccole o singole */
+  .mini-cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important;
+    gap: 12px;
+  }
+
+  /* La sezione distribuzione per tipo */
+  .progress-label {
+    font-size: 0.9rem;
+  }
+
+  /* Ridimensiona il titolo di benvenuto */
+  .welcome h1 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Per schermi molto piccoli */
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr !important; /* Una sola colonna per le statistiche */
+  }
+  
+  .section-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    
+    h2 { font-size: 1.2rem; }
+  }
+}

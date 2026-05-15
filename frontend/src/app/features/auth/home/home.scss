@@ -1,87 +1,97 @@
-.home-container {
-  max-width: 900px;
+/* Stili generali per la homepage */
+.home-page-container {
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 48px 16px;
+  padding: 20px;
+  overflow-x: hidden; /* Previene lo scroll orizzontale */
 }
 
-.hero {
+.hero-section {
   text-align: center;
-  padding: 80px 0;
-
-  .home-logo {
-    width: 540px;
-    height: auto;
-    margin: 0 auto 28px;
-    display: block;
-  }
-
-  h1 {
-    font-size: 72px;
-    margin-bottom: 16px;
-    background: linear-gradient(135deg, #4db6ac, #80cbc4, #a5d6a7);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .subtitle {
-    font-size: 25px;
-    color: #cdc7da;
-    line-height: 1.5;
-    margin-bottom: 40px;
-  }
-
-  .actions {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-
-    button {
-      padding: 8px 32px;
-      font-size: 20px;
-      border-radius: 24px !important;
-      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-    }
-
-    button:hover {
-      background-color: #4db6ac !important;
-      color: #11042a !important;
-      border-color: #4db6ac !important;
-    }
-  }
+  margin-bottom: 40px;
 }
 
-.features {
+.responsive-hero-image {
+  max-width: 100%; /* L'immagine si adatta alla larghezza del contenitore */
+  height: auto; /* Mantiene le proporzioni */
+  display: block; /* Rimuove lo spazio extra sotto l'immagine */
+  margin: 0 auto 20px auto; /* Centra l'immagine e aggiunge spazio sotto */
+}
+
+.hero-text h1 {
+  font-size: 2.5em;
+  color: #f3eefc;
+  margin-bottom: 10px;
+}
+
+.hero-text p {
+  font-size: 1.2em;
+  color: #abe0fa;
+}
+
+.featured-cards-section {
+  margin-bottom: 40px;
+}
+
+.featured-cards-section h2 {
+  font-size: 2em;
+  color: #f3eefc;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 24px;
-  margin-top: 64px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+  gap: 20px;
+  justify-content: center; /* Centra le card se non riempiono la riga */
 }
 
-.feature {
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 15px;
   text-align: center;
-  background: #543083;
-  border-radius: 16px;
-  padding: 32px 24px;
-  border: 1px solid rgba(156, 121, 250, 0.2);
-  transition: transform 0.2s, border-color 0.2s;
+}
 
-  &:hover {
-    transform: translateY(-4px);
-    border-color: #4db6ac;
+.responsive-card-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px; /* Optional: per arrotondare gli angoli delle immagini nelle card */
+  margin-bottom: 10px;
+}
+
+/* Media Queries per dispositivi mobili */
+@media (max-width: 768px) {
+  .home-page-container {
+    padding: 10px;
   }
 
-  .icon {
-    font-size: 48px;
+  .hero-text h1 {
+    font-size: 2em;
   }
 
-  h3 {
-    margin: 16px 0 8px;
-    color: #d7cdda;
+  .hero-text p {
+    font-size: 1em;
   }
 
-  p {
-    color: #b3a7c9;
-    line-height: 1.5;
+  .featured-cards-section h2 {
+    font-size: 1.5em;
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Riduci la dimensione minima delle card */
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-text h1 {
+    font-size: 1.8em;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr; /* Una sola colonna per le card su schermi molto piccoli */
   }
 }
