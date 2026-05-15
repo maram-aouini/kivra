@@ -16,7 +16,7 @@
 }
 
 .home-logo {
-  width: 800px; /* Dimensione fissa per desktop */
+  width: 720px; /* Dimensione fissa per desktop */
   height: auto;
   margin-bottom: 20px;
 }
@@ -82,7 +82,7 @@
 }
 
 /* Media Queries per dispositivi mobili */
-@media (max-width: 768px) {
+@media (max-width: 968px) {
   .home-container {
     padding: 20px 15px; /* Riduci il padding sui lati */
   }
@@ -92,7 +92,7 @@
   }
 
   .home-logo {
-    width: 250px; /* Riduci la dimensione del logo */
+    width: 230px; /* Riduci la dimensione del logo */
   }
 
   .subtitle {
@@ -134,7 +134,7 @@
   }
 
   .home-logo {
-    width: 200px;
+    width: 180px;
   }
 
   .subtitle {
