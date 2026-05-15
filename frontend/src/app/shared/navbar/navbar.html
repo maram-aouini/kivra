@@ -5,7 +5,7 @@
   @if (authService.isLoggedIn()) {
   <button mat-button routerLink="/profile" class="user-profile-btn">
     <mat-icon>account_circle</mat-icon>
-    Ciao, {{ authService.getUsername() }}
+    <span class="greeting">Ciao, </span><span class="username">{{ authService.getUsername() }}</span>
   </button>
   <button mat-button (click)="logout()">
     <mat-icon>logout</mat-icon>

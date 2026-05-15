@@ -54,12 +54,12 @@
   </div>
 
   <!-- In corso -->
-  @if (inProgressContents.length > 0) {
-    <div class="content-section">
-      <div class="section-header">
-        <h2>▶️ In corso</h2>
-        <button mat-button (click)="goToContents()">Vedi tutti →</button>
-      </div>
+  <div class="content-section">
+    <div class="section-header">
+      <h2>▶️ In corso</h2>
+      <button mat-button (click)="goToContents()">Vedi tutti →</button>
+    </div>
+    @if (inProgressContents.length > 0) {
       <div class="mini-cards-grid">
         @for (content of inProgressContents; track content.id) {
           <div class="mini-card" (click)="openDetail(content)">
@@ -78,16 +78,16 @@
           </div>
         }
       </div>
-    </div>
-  }
+    }
+  </div>
 
   <!-- Aggiunti di recente -->
-  @if (recentContents.length > 0) {
-    <div class="content-section">
-      <div class="section-header">
-        <h2>🕐 Aggiunti di recente</h2>
-        <button mat-button (click)="goToContents()">Vedi tutti →</button>
-      </div>
+  <div class="content-section">
+    <div class="section-header">
+      <h2>🕐 Aggiunti di recente</h2>
+      <button mat-button (click)="goToContents()">Vedi tutti →</button>
+    </div>
+    @if (recentContents.length > 0) {
       <div class="mini-cards-grid">
         @for (content of recentContents; track content.id) {
           <div class="mini-card" (click)="openDetail(content)">
@@ -106,8 +106,8 @@
           </div>
         }
       </div>
-    </div>
-  }
+    }
+  </div>
 
   <!-- Categorie -->
   <div class="content-section">
