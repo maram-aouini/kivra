@@ -19,4 +19,7 @@ public class RegisterRequest {
     @NotBlank(message = "Password obbligatoria")
     @Size(min = 6, message = "Password minimo 6 caratteri")
     private String password;
+
+    @NotBlank(message = "Conferma password obbligatoria")
+    private String confirmPassword;
 }

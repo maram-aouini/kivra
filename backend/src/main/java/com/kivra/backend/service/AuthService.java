@@ -12,6 +12,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -22,6 +25,9 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
 
     public AuthResponse register(RegisterRequest request) {
+        if (!request.getPassword().equals(request.getConfirmPassword())) {
+            throw new RuntimeException("Le password non coincidono");
+        }
         if (userRepository.existsByEmail(request.getEmail())) {
             throw new RuntimeException("Email già in uso");
         }
@@ -53,5 +59,37 @@ public class AuthService {
 
         String token = jwtUtils.generateToken(user.getEmail());
         return new AuthResponse(token, user.getUsername(), user.getEmail(), user.isAdmin());
+    }
+
+    public Map<String, String> updateUsername(String email, String newUsername) {
+        if (userRepository.existsByUsername(newUsername)) {
+            throw new RuntimeException("Username già in uso");
+        }
+
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Utente non trovato"));
+
+        user.setUsername(newUsername);
+        userRepository.save(user);
+
+        Map<String, String> response = new HashMap<>();
+        response.put("username", newUsername);
+        return response;
+    }
+
+    public Map<String, String> updatePassword(String email, String oldPassword, String newPassword) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Utente non trovato"));
+
+        if (!passwordEncoder.matches(oldPassword, user.getPassword())) {
+            throw new RuntimeException("Password attuale non corretta");
+        }
+
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
+
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Password aggiornata con successo");
+        return response;
     }
 }

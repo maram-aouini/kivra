@@ -1,0 +1,32 @@
+<div class="profile-container">
+  <h2>Impostazioni Account</h2>
+  
+  <p *ngIf="message" class="alert">{{ message }}</p>
+
+  <!-- Modifica Username -->
+  <section>
+    <h3>Modifica Username</h3>
+    <form [formGroup]="usernameForm" (ngSubmit)="onUpdateUsername()">
+      <input type="text" formControlName="username" placeholder="Nuovo Username">
+      <button type="submit" [disabled]="usernameForm.invalid">Aggiorna Username</button>
+    </form>
+  </section>
+
+  <hr>
+
+  <!-- Modifica Password -->
+  <section>
+    <h3>Modifica Password</h3>
+    <form [formGroup]="passwordForm" (ngSubmit)="onUpdatePassword()">
+      <input type="password" formControlName="oldPassword" placeholder="Vecchia Password">
+      <input type="password" formControlName="newPassword" placeholder="Nuova Password">
+      <input type="password" formControlName="confirmPassword" placeholder="Conferma Nuova Password">
+      
+      <div *ngIf="passwordForm.hasError('mismatch') && passwordForm.get('confirmPassword')?.touched">
+        <small style="color: red;">Le password non corrispondono.</small>
+      </div>
+
+      <button type="submit" [disabled]="passwordForm.invalid">Aggiorna Password</button>
+    </form>
+  </section>
+</div>
