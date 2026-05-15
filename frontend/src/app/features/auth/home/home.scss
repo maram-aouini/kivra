@@ -43,11 +43,11 @@
 
 .features {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Griglia responsive per le feature */
-  gap: 20px; /* Card più vicine tra loro */
-  margin-top: 25px; /* Ridotto distacco dalle azioni */
+  grid-template-columns: repeat(auto-fit, 310px); /* Larghezza fissa per evitare l'espansione e centrare */
+  gap: 15px; /* Ridotto per avvicinare le card */
+  margin-top: 20px;
   margin-bottom: 20px;
-  justify-content: center; /* Centra il gruppo di card */
+  justify-content: center;
 }
 
 .feature {
