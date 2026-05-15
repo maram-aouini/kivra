@@ -1,14 +1,14 @@
 /* Stili generali per la homepage */
 .home-page-container {
-  max-width: 1200px; /* Larghezza massima per desktop */
+  max-width: 1050px; /* Ridotta per avvicinare gli elementi */
   margin: 0 auto; /* Centra il contenitore */
-  padding: 30px 20px; /* Padding verticale e orizzontale */
+  padding: 10px 20px; /* Ridotto il padding verticale per minimizzare lo scroll */
   overflow-x: hidden; /* Previene lo scroll orizzontale */
   text-align: center; /* Centra il testo e gli elementi di blocco */
 }
 
 .hero {
-  margin-bottom: 40px;
+  margin-bottom: 20px; /* Ridotto lo spazio sotto l'header */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,17 +16,17 @@
 }
 
 .home-logo {
-  width: 620px; /* Dimensione fissa per desktop */
+  width: 580px; /* Dimensione fissa per desktop */
   height: auto;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .subtitle {
-  font-size: 1.5em;
+  font-size: 1.25em; /* Sottotitolo più piccolo */
   color: #abe0fa;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   line-height: 1.6;
-  max-width: 700px; /* Limita la larghezza del sottotitolo */
+  max-width: 650px; /* Ridotta la larghezza massima del testo */
 }
 
 .actions {
@@ -35,29 +35,29 @@
   justify-content: center; /* Centra i pulsanti */
 
   button {
-    min-width: 150px;
-    padding: 10px 20px;
-    font-size: 1.1em;
+    min-width: 130px;
+    padding: 8px 16px;
+    font-size: 1em;
   }
 }
 
 .features {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Griglia responsive per le feature */
-  gap: 30px;
-  margin-top: 40px;
-  margin-bottom: 30px;
-  justify-items: center; /* Centra le feature card all'interno della griglia */
+  gap: 20px; /* Card più vicine tra loro */
+  margin-top: 25px; /* Ridotto distacco dalle azioni */
+  margin-bottom: 20px;
+  justify-content: center; /* Centra il gruppo di card */
 }
 
 .feature {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 12px;
-  padding: 30px;
+  padding: 20px; /* Interno card più compatto */
   border: 1px solid rgba(255, 255, 255, 0.08);
   text-align: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  max-width: 350px; /* Limita la larghezza delle singole feature card */
+  max-width: 310px; /* Card leggermente meno larghe per desktop */
 
   &:hover {
     transform: translateY(-5px);
@@ -66,14 +66,14 @@
 }
 
 .feature .icon {
-  font-size: 3em;
-  margin-bottom: 15px;
+  font-size: 2.2em; /* Icone meno ingombranti */
+  margin-bottom: 10px;
   display: block; /* Assicura che l'icona sia un blocco per centrarla */
 }
 
 .feature h3 {
-  font-size: 1.6em;
-  margin-bottom: 10px;
+  font-size: 1.3em;
+  margin-bottom: 8px;
   color: #fdf7ff;
 }
 
