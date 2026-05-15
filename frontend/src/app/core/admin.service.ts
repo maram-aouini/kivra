@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AdminService {
 
-  private apiUrl = 'http://localhost:8080/api/admin';
+  private apiUrl = 'https://kivra-a5su.onrender.com/api/admin';
 
   constructor(private http: HttpClient) {}
 

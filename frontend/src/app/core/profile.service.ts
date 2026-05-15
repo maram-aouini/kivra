@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ProfileService {
 
-  private apiUrl = 'http://localhost:8080/api/auth/profile';
+  private apiUrl = 'https://kivra-a5su.onrender.com/api/auth/profile';
 
   constructor(private http: HttpClient) {}
 
