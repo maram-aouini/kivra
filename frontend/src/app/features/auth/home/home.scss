@@ -8,7 +8,7 @@
 }
 
 .hero {
-  margin-bottom: 20px;
+  margin-bottom: 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,7 +16,7 @@
 }
 
 .home-logo {
-  width: 720px; /* Dimensione fissa per desktop */
+  width: 660px; /* Dimensione fissa per desktop */
   height: auto;
   margin-bottom: 10px;
 }
@@ -43,10 +43,9 @@
 
 .features {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Griglia responsive per le feature */
-  gap: 25px;
-  margin-top: 10px;
-  margin-bottom: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Griglia responsive per le feature */
+  gap: 30px;
+  margin-top: 40px;
   justify-items: center; /* Centra le feature card all'interno della griglia */
 }
 
