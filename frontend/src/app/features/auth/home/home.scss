@@ -1,66 +1,153 @@
 /* Stili generali per la homepage */
 .home-page-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+  max-width: 1200px; /* Larghezza massima per desktop */
+  margin: 0 auto; /* Centra il contenitore */
+  padding: 40px 20px; /* Padding verticale e orizzontale */
   overflow-x: hidden; /* Previene lo scroll orizzontale */
+  text-align: center; /* Centra il testo e gli elementi di blocco */
 }
 
-.hero-section {
-  text-align: center;
-  margin-bottom: 40px;
+.hero {
+  margin-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.responsive-hero-image {
-  max-width: 100%; /* L'immagine si adatta alla larghezza del contenitore */
-  height: auto; /* Mantiene le proporzioni */
-  display: block; /* Rimuove lo spazio extra sotto l'immagine */
-  margin: 0 auto 20px auto; /* Centra l'immagine e aggiunge spazio sotto */
+.home-logo {
+  width: 180px; /* Dimensione fissa per desktop */
+  height: auto;
+  margin-bottom: 20px;
 }
 
-.hero-text h1 {
-  font-size: 2.5em;
-  color: #f3eefc;
-  margin-bottom: 10px;
-}
-
-.hero-text p {
-  font-size: 1.2em;
+.subtitle {
+  font-size: 1.5em;
   color: #abe0fa;
-}
-
-.featured-cards-section {
-  margin-bottom: 40px;
-}
-
-.featured-cards-section h2 {
-  font-size: 2em;
-  color: #f3eefc;
-  text-align: center;
   margin-bottom: 30px;
+  line-height: 1.6;
+  max-width: 700px; /* Limita la larghezza del sottotitolo */
 }
 
-.cards-grid {
+.actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center; /* Centra i pulsanti */
+
+  button {
+    min-width: 150px;
+    padding: 10px 20px;
+    font-size: 1.1em;
+  }
+}
+
+.features {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
-  gap: 20px;
-  justify-content: center; /* Centra le card se non riempiono la riga */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Griglia responsive per le feature */
+  gap: 30px;
+  margin-top: 40px;
+  justify-items: center; /* Centra le feature card all'interno della griglia */
 }
 
-.card {
+.feature {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 12px;
-  overflow: hidden;
+  padding: 30px;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 15px;
   text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  max-width: 350px; /* Limita la larghezza delle singole feature card */
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
 }
 
-.responsive-card-image {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px; /* Optional: per arrotondare gli angoli delle immagini nelle card */
+.feature .icon {
+  font-size: 3em;
+  margin-bottom: 15px;
+  display: block; /* Assicura che l'icona sia un blocco per centrarla */
+}
+
+.feature h3 {
+  font-size: 1.6em;
   margin-bottom: 10px;
+  color: #fdf7ff;
+}
+
+.feature p {
+  font-size: 1em;
+  color: #b0bec5;
+}
+
+/* Media Queries per dispositivi mobili */
+@media (max-width: 768px) {
+  .home-container {
+    padding: 20px 15px; /* Riduci il padding sui lati */
+  }
+
+  .hero {
+    margin-bottom: 40px;
+  }
+
+  .home-logo {
+    width: 150px; /* Riduci la dimensione del logo */
+  }
+
+  .subtitle {
+    font-size: 1.2em;
+  }
+
+  .actions {
+    flex-direction: column; /* Impila i pulsanti verticalmente */
+    gap: 10px;
+
+    button {
+      width: 100%; /* I pulsanti occupano tutta la larghezza */
+      max-width: 250px; /* Limita la larghezza massima dei pulsanti */
+    }
+  }
+
+  .features {
+    grid-template-columns: 1fr; /* Una sola colonna per le feature */
+    gap: 20px;
+  }
+
+  .feature {
+    padding: 20px;
+    max-width: 100%; /* Permetti alle card di occupare tutta la larghezza disponibile */
+  }
+
+  .feature .icon {
+    font-size: 2.5em;
+  }
+
+  .feature h3 {
+    font-size: 1.4em;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-container {
+    padding: 15px 10px;
+  }
+
+  .home-logo {
+    width: 120px;
+  }
+
+  .subtitle {
+    font-size: 1em;
+  }
+
+  .feature .icon {
+    font-size: 2em;
+  }
+
+  .feature h3 {
+    font-size: 1.2em;
+  }
 }
 
 /* Media Queries per dispositivi mobili */
