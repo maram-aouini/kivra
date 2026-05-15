@@ -1,0 +1,101 @@
+<div class="admin-page">
+  <div class="admin-header">
+    <h1>Pannello Amministratore</h1>
+    <button mat-button routerLink="/overview">Torna all'overview</button>
+  </div>
+
+  <!-- Statistics Cards -->
+  <div class="stats-container" *ngIf="stats">
+    <mat-card class="stat-card">
+      <mat-card-content>
+        <div class="stat-icon">👥</div>
+        <div class="stat-info">
+          <div class="stat-value">{{ stats.totalUsers }}</div>
+          <div class="stat-label">Utenti Registrati</div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <mat-card-content>
+        <div class="stat-icon">📄</div>
+        <div class="stat-info">
+          <div class="stat-value">{{ stats.totalContents }}</div>
+          <div class="stat-label">Contenuti Totali</div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Users Management Section -->
+  <mat-card class="users-card">
+    <mat-card-header>
+      <mat-card-title>Gestione Utenti</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content class="users-content">
+      <!-- Search Bar -->
+      <div class="search-container">
+        <mat-form-field appearance="outline" class="search-field">
+          <mat-label>Ricerca per email o username</mat-label>
+          <input
+            matInput
+            [(ngModel)]="searchQuery"
+            (keyup.enter)="onSearch()"
+            placeholder="es. nome&#64;email.com o username">
+          <button mat-icon-button matSuffix (click)="onSearch()" *ngIf="searchQuery">
+            <mat-icon>search</mat-icon>
+          </button>
+        </mat-form-field>
+        <button mat-stroked-button (click)="loadUsers()" *ngIf="searchQuery" class="clear-btn">
+          Cancella ricerca
+        </button>
+      </div>
+
+      <!-- Loading State -->
+      <div class="loading-container" *ngIf="loading">
+        <mat-spinner diameter="40"></mat-spinner>
+        <p>Caricamento utenti...</p>
+      </div>
+
+      <!-- Users Table -->
+      <div class="table-container" *ngIf="!loading && users.length > 0">
+        <table class="users-table">
+          <thead>
+            <tr class="header-row">
+              <th>Username</th>
+              <th>Email</th>
+              <th class="center-cell">Contenuti</th>
+              <th>Data Registrazione</th>
+              <th class="center-cell">Azioni</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="data-row" *ngFor="let user of users">
+              <td class="username-cell">{{ user.username }}</td>
+              <td class="email-cell">{{ user.email }}</td>
+              <td class="center-cell">
+                <span class="content-badge">{{ user.contentCount }}</span>
+              </td>
+              <td>{{ formatDate(user.createdAt) }}</td>
+              <td class="center-cell">
+                <button
+                  mat-icon-button
+                  matTooltip="Elimina utente"
+                  (click)="deleteUser(user.id, user.username)"
+                  class="delete-btn">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Empty State -->
+      <div class="empty-state" *ngIf="!loading && users.length === 0">
+        <p>Nessun utente trovato</p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

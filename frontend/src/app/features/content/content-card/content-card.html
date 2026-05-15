@@ -1,0 +1,61 @@
+<mat-card class="content-card">
+  <div class="clickable-area" (click)="openDetail()">
+    @if (content.coverUrl) {
+      <div class="image-container"
+           (mousemove)="onMouseMove($event)"
+           (mouseup)="onMouseUp()"
+           (mouseleave)="onMouseUp()">
+        <img class="card-image"
+             [src]="content.coverUrl"
+             [alt]="content.title"
+             [ngStyle]="getImageStyle()"
+             (mousedown)="onMouseDown($event)"
+             (touchstart)="onTouchStart($event)"
+             (touchmove)="onTouchMove($event)"
+             (touchend)="onTouchEnd()">
+        <button class="reposition-btn"
+                mat-icon-button
+                (click)="$event.stopPropagation(); toggleRepositionMode()"
+                [matTooltip]="repositionMode ? 'Fine riposizionamento' : 'Riposiziona immagine'">
+          <mat-icon>{{ repositionMode ? 'check' : 'tune' }}</mat-icon>
+        </button>
+        @if (repositionMode) {
+          <div class="reposition-hint">
+            <mat-icon>drag_indicator</mat-icon>
+            Trascina su/giù
+          </div>
+        }
+      </div>
+    }
+
+    <mat-card-header>
+      <mat-card-title>{{ content.title }}</mat-card-title>
+      <mat-card-subtitle>{{ getTypeLabel(content.type) }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-chip-set>
+        <mat-chip [color]="getStatusColor(content.status)" highlighted>
+          {{ getStatusLabel(content.status) }}
+        </mat-chip>
+      </mat-chip-set>
+
+      @if (content.rating) {
+        <p class="rating">⭐ {{ content.rating }}/10</p>
+      }
+
+      @if (content.notes) {
+        <p class="notes">{{ content.notes }}</p>
+      }
+    </mat-card-content>
+  </div>
+
+  <mat-card-actions>
+    <button mat-button color="primary" (click)="edit.emit(content)">
+      <mat-icon>edit</mat-icon> Modifica
+    </button>
+    <button mat-button color="warn" (click)="onDeleteClick()">
+      <mat-icon>delete</mat-icon> Elimina
+    </button>
+  </mat-card-actions>
+</mat-card>

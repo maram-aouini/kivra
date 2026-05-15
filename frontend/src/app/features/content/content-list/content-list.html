@@ -1,0 +1,68 @@
+<button mat-button routerLink="/overview" class="back-button">Torna indietro</button>
+
+<div class="content-list-container">
+  <div class="header">
+    <h1>La mia lista</h1>
+    <button mat-raised-button color="primary" (click)="openAddDialog()">
+      <mat-icon>add</mat-icon>
+      Aggiungi
+    </button>
+  </div>
+
+  <div class="filters">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Cerca...</mat-label>
+      <mat-icon matPrefix>search</mat-icon>
+      <input matInput [(ngModel)]="searchQuery" (ngModelChange)="onSearchChange()" />
+      @if (searchQuery) {
+        <button matSuffix mat-icon-button (click)="searchQuery = ''; onSearchChange()">
+          <mat-icon>close</mat-icon>
+        </button>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Tipo</mat-label>
+      <mat-select [(ngModel)]="selectedType" (ngModelChange)="onFilterChange()">
+        @for (type of contentTypes; track type.value) {
+          <mat-option [value]="type.value">{{ type.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Stato</mat-label>
+      <mat-select [(ngModel)]="selectedStatus" (ngModelChange)="onFilterChange()">
+        @for (status of contentStatuses; track status.value) {
+          <mat-option [value]="status.value">{{ status.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  @if (loading) {
+    <div class="spinner-container">
+      <mat-spinner />
+    </div>
+  } @else if (filteredContents.length === 0 && searchQuery) {
+    <div class="empty-state">
+      <mat-icon>search_off</mat-icon>
+      <p>Nessun risultato per "<strong>{{ searchQuery }}</strong>"</p>
+    </div>
+  } @else if (filteredContents.length === 0) {
+    <div class="empty-state">
+      <mat-icon>movie</mat-icon>
+      <p>Nessun contenuto trovato. Aggiungine uno!</p>
+    </div>
+  } @else {
+    <p class="results-count">{{ filteredContents.length }} risultati</p>
+    <div class="cards-grid">
+      @for (content of filteredContents; track content.id) {
+        <app-content-card
+          [content]="content"
+          (edit)="openEditDialog($event)"
+          (delete)="onDelete($event)" />
+      }
+    </div>
+  }
+</div>

@@ -1,0 +1,59 @@
+mat-toolbar {
+  background: linear-gradient(135deg, #be9af8 0%, #34116dc9 100%) !important;
+  border-bottom: 2px solid rgba(194, 139, 255, 0.36);
+  box-shadow: 0 2px 24px rgba(20, 8, 40, 0.5);
+  color: #f7efff;
+  min-height: 70px !important;
+  padding: 16px 24px !important;
+  gap: 16px;
+  display: flex !important;
+  align-items: center;
+
+  img[alt="Kivra Logo"] {
+    height: 55px !important;
+    width: auto;
+    flex-shrink: 0;
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  button[mat-button] {
+    color: #f8ecff;
+    border: 1px solid rgba(228, 190, 255, 0.24);
+    border-radius: 999px;
+    padding: 0 14px;
+    min-height: 40px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+
+    mat-icon {
+      margin-right: 6px;
+      color: inherit;
+    }
+
+    &:hover {
+      background-color: rgb(77, 182, 172);
+      border-color: rgb(77, 182, 172);
+    }
+  }
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.username {
+  margin-right: 16px;
+  font-size: 14px;
+  color: #c2a2ff;
+}
+
+.logo {
+  cursor: pointer;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}

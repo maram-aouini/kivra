@@ -1,0 +1,78 @@
+<div class="detail-wrapper">
+  @if (content.coverUrl) {
+    <div class="cover-section">
+      <img class="cover-image"
+           [src]="content.coverUrl"
+           [alt]="content.title"
+           [ngStyle]="{'object-position': 'center ' + (content.imagePosition ?? 50) + '%'}">
+      <div class="cover-overlay">
+        <h2>{{ content.title }}</h2>
+        <div class="chips-row">
+          <mat-chip-set>
+            <mat-chip>{{ getTypeLabel(content.type) }}</mat-chip>
+            <mat-chip [color]="getStatusColor(content.status)" highlighted>
+              {{ getStatusLabel(content.status) }}
+            </mat-chip>
+          </mat-chip-set>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <div class="no-cover">
+      <h2>{{ content.title }}</h2>
+      <div class="chips-row">
+        <mat-chip-set>
+          <mat-chip>{{ getTypeLabel(content.type) }}</mat-chip>
+          <mat-chip [color]="getStatusColor(content.status)" highlighted>
+            {{ getStatusLabel(content.status) }}
+          </mat-chip>
+        </mat-chip-set>
+      </div>
+    </div>
+  }
+
+  <mat-dialog-content class="detail-content">
+    @if (content.rating) {
+      <div class="detail-row">
+        <mat-icon>star</mat-icon>
+        <span class="detail-value">{{ content.rating }}/10</span>
+      </div>
+    }
+
+    @if (content.startDate) {
+      <div class="detail-row">
+        <mat-icon>play_arrow</mat-icon>
+        <span class="detail-value">Iniziato: {{ content.startDate }}</span>
+      </div>
+    }
+
+    @if (content.endDate) {
+      <div class="detail-row">
+        <mat-icon>check_circle</mat-icon>
+        <span class="detail-value">Finito: {{ content.endDate }}</span>
+      </div>
+    }
+
+    @if (content.description) {
+      <div class="section">
+        <h3>Descrizione</h3>
+        <p>{{ content.description }}</p>
+      </div>
+    }
+
+    @if (content.notes) {
+      <div class="section">
+        <h3>Le mie note</h3>
+        <p>{{ content.notes }}</p>
+      </div>
+    }
+
+    @if (!content.rating && !content.description && !content.notes && !content.startDate && !content.endDate) {
+      <p class="empty">Nessun dettaglio aggiuntivo.</p>
+    }
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="dialogRef.close()">Chiudi</button>
+  </mat-dialog-actions>
+</div>

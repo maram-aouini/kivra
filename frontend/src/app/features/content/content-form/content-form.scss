@@ -1,0 +1,68 @@
+.full-width {
+  width: 100%;
+}
+
+mat-dialog-content {
+  display: grid;
+  gap: 18px;
+  padding-top: 8px !important;
+}
+
+mat-form-field {
+  margin-top: 8px;
+}
+
+mat-dialog-actions {
+  margin-top: 22px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+button[mat-button],
+button[mat-raised-button] {
+  min-width: 120px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+mat-dialog-content {
+  display: grid;
+  gap: 18px;
+  padding-top: 8px !important;
+}
+
+mat-form-field {
+  margin-top: 8px;
+}
+
+mat-dialog-actions {
+  margin-top: 22px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+button[mat-button],
+button[mat-raised-button] {
+  min-width: 120px;
+}
+
+/* Colori bordi form fields */
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing {
+  border-color: #4db6ac !important;
+}
+
+.mat-mdc-form-field.mat-focused .mat-mdc-floating-label {
+  color: #4db6ac !important;
+}
+
+.mdc-notched-outline__leading,
+.mdc-notched-outline__notch,
+.mdc-notched-outline__trailing {
+  border-color: rgba(77, 182, 172, 0.4) !important;
+}

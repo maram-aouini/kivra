@@ -1,0 +1,25 @@
+<mat-toolbar color="primary">
+  <img src="assets/images/logo.svg" alt="Kivra Logo" (click)="onLogoClick()"
+    style="cursor:pointer; height: 32px; margin-right: 8px;">
+  <span class="spacer"></span>
+  @if (authService.isLoggedIn()) {
+  <button mat-button routerLink="/profile" class="user-profile-btn">
+    <mat-icon>account_circle</mat-icon>
+    Ciao, {{ authService.getUsername() }}
+  </button>
+  <button mat-button (click)="logout()">
+    <mat-icon>logout</mat-icon>
+    Esci
+  </button>
+  } @else {
+  <button mat-button routerLink="/login">Accedi</button>
+  <button mat-button routerLink="/register">Registrati</button>
+  }
+
+  @if (authService.isAdmin()) {
+  <button mat-button routerLink="/admin">
+    <mat-icon>admin_panel_settings</mat-icon>
+    Admin
+  </button>
+  }
+</mat-toolbar>

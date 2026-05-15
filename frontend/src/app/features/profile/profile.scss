@@ -1,0 +1,156 @@
+.profile-page {
+  max-width: 600px;
+  margin: 24px auto;
+  padding: 24px;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.profile-header h1 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.profile-card {
+  background: rgba(18, 8, 40, 0.95);
+  border: 1px solid rgba(77, 182, 172, 0.14);
+  margin-bottom: 24px;
+  padding: 24px;
+
+  mat-card-header {
+    margin: 0 0 20px 0;
+    padding: 0;
+  }
+
+  mat-card-title {
+    color: #f3eefc;
+    font-size: 18px;
+    margin: 0;
+  }
+
+  mat-card-content {
+    padding: 0;
+  }
+}
+
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.current-value {
+  font-size: 16px;
+  color: #f3eefc;
+  font-weight: 500;
+  margin: 0;
+  padding: 12px;
+  background: rgba(77, 182, 172, 0.08);
+  border-radius: 4px;
+  border-left: 3px solid #4db6ac;
+}
+
+.info-text {
+  font-size: 14px;
+  color: #b0a7c9;
+  margin: 0;
+}
+
+.form-toggle {
+  display: flex;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 500px;
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+::ng-deep {
+  .profile-card .mat-mdc-form-field {
+    width: 100%;
+  }
+
+  .profile-card .mdc-text-field {
+    background-color: rgba(77, 182, 172, 0.05);
+  }
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+
+  button {
+    flex: 1;
+  }
+}
+
+.button-spinner {
+  display: inline-block;
+  margin-right: 8px;
+}
+
+::ng-deep {
+  .success-snackbar {
+    background-color: #4caf50 !important;
+    color: white !important;
+  }
+
+  .error-snackbar {
+    background-color: #f44336 !important;
+    color: white !important;
+  }
+}
+
+// Responsive
+@media (max-width: 600px) {
+  .profile-page {
+    padding: 16px;
+  }
+
+  .profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .profile-header h1 {
+    font-size: 24px;
+  }
+
+  .profile-card {
+    padding: 16px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+
+    button {
+      width: 100%;
+    }
+  }
+}

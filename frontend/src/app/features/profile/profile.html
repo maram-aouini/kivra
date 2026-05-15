@@ -1,0 +1,136 @@
+<div class="profile-page">
+  <div class="profile-header">
+    <h1>Profilo Personale</h1>
+    <button mat-button routerLink="/overview">Torna all'overview</button>
+  </div>
+
+  <!-- Username Card -->
+  <mat-card class="profile-card">
+    <mat-card-header>
+      <mat-card-title>Username</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="profile-section">
+        <p class="current-value">{{ currentUsername }}</p>
+        
+        <div *ngIf="!showUsernameForm" class="form-toggle">
+          <button mat-stroked-button (click)="toggleUsernameForm()">
+            Modifica Username
+          </button>
+        </div>
+
+        <div *ngIf="showUsernameForm" class="edit-form">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Nuovo Username</mat-label>
+            <input 
+              matInput 
+              [(ngModel)]="newUsername"
+              placeholder="Inserisci il nuovo username">
+          </mat-form-field>
+
+          <div class="form-actions">
+            <button 
+              mat-raised-button 
+              color="primary"
+              (click)="updateUsername()"
+              [disabled]="usernameLoading">
+              <span *ngIf="!usernameLoading">Salva</span>
+              <mat-spinner *ngIf="usernameLoading" diameter="20" class="button-spinner"></mat-spinner>
+            </button>
+            <button 
+              mat-stroked-button 
+              (click)="toggleUsernameForm()"
+              [disabled]="usernameLoading">
+              Annulla
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Password Card -->
+  <mat-card class="profile-card">
+    <mat-card-header>
+      <mat-card-title>Password</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="profile-section">
+        <p class="info-text">Proteggi il tuo account con una password sicura</p>
+        
+        <div *ngIf="!showPasswordForm" class="form-toggle">
+          <button mat-stroked-button (click)="togglePasswordForm()">
+            Modifica Password
+          </button>
+        </div>
+
+        <div *ngIf="showPasswordForm" class="edit-form">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Password Attuale</mat-label>
+            <input 
+              matInput 
+              [type]="hideOldPassword ? 'password' : 'text'"
+              [(ngModel)]="oldPassword"
+              placeholder="Inserisci la password attuale">
+            <button 
+              mat-icon-button 
+              matSuffix 
+              (click)="hideOldPassword = !hideOldPassword"
+              type="button">
+              <mat-icon>{{ hideOldPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Nuova Password</mat-label>
+            <input 
+              matInput 
+              [type]="hideNewPassword ? 'password' : 'text'"
+              [(ngModel)]="newPassword"
+              placeholder="Inserisci la nuova password">
+            <button 
+              mat-icon-button 
+              matSuffix 
+              (click)="hideNewPassword = !hideNewPassword"
+              type="button">
+              <mat-icon>{{ hideNewPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Conferma Password</mat-label>
+            <input 
+              matInput 
+              [type]="hideConfirmPassword ? 'password' : 'text'"
+              [(ngModel)]="confirmPassword"
+              placeholder="Conferma la nuova password">
+            <button 
+              mat-icon-button 
+              matSuffix 
+              (click)="hideConfirmPassword = !hideConfirmPassword"
+              type="button">
+              <mat-icon>{{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <div class="form-actions">
+            <button 
+              mat-raised-button 
+              color="primary"
+              (click)="updatePassword()"
+              [disabled]="passwordLoading">
+              <span *ngIf="!passwordLoading">Salva</span>
+              <mat-spinner *ngIf="passwordLoading" diameter="20" class="button-spinner"></mat-spinner>
+            </button>
+            <button 
+              mat-stroked-button 
+              (click)="togglePasswordForm()"
+              [disabled]="passwordLoading">
+              Annulla
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

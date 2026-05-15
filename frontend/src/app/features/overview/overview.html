@@ -1,0 +1,127 @@
+<div class="overview-container">
+
+  <!-- Sfondo particelle decorative -->
+  <div class="bg-decoration">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- Header -->
+  <div class="welcome">
+    <h1>Bentornato/a, <span class="username-highlight">{{ username }}</span></h1>
+    <p>Ecco un riepilogo della tua lista</p>
+  </div>
+
+  <!-- Statistiche animate -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <span class="stat-number">{{ animatedTotal }}</span>
+      <span class="stat-label">Totale</span>
+    </div>
+    <div class="stat-card in-progress">
+      <span class="stat-number">{{ animatedInProgress }}</span>
+      <span class="stat-label">In corso</span>
+    </div>
+    <div class="stat-card completed">
+      <span class="stat-number">{{ animatedCompleted }}</span>
+      <span class="stat-label">Completati</span>
+    </div>
+    <div class="stat-card to-start">
+      <span class="stat-number">{{ animatedToStart }}</span>
+      <span class="stat-label">Da iniziare</span>
+    </div>
+  </div>
+
+  <!-- Barre di progresso per tipo -->
+  <div class="type-progress-section">
+    <h2>Distribuzione per tipo</h2>
+    <div class="progress-bars">
+      @for (stat of typeStats; track stat.type) {
+        <div class="progress-row" (click)="goToCategory(stat.type)">
+          <div class="progress-label">
+            <span>{{ stat.icon }} {{ stat.label }}</span>
+            <span class="progress-count">{{ stat.count }}</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill"
+                 [ngStyle]="{'width': getProgressWidth(stat.count), 'background': stat.color}">
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- In corso -->
+  @if (inProgressContents.length > 0) {
+    <div class="content-section">
+      <div class="section-header">
+        <h2>▶️ In corso</h2>
+        <button mat-button (click)="goToContents()">Vedi tutti →</button>
+      </div>
+      <div class="mini-cards-grid">
+        @for (content of inProgressContents; track content.id) {
+          <div class="mini-card" (click)="openDetail(content)">
+            @if (content.coverUrl) {
+              <div class="mini-card-image">
+                <img [src]="content.coverUrl" [alt]="content.title"
+                     [ngStyle]="{'object-position': 'center ' + (content.imagePosition ?? 50) + '%'}">
+              </div>
+            } @else {
+              <div class="mini-card-no-image">{{ content.title[0] }}</div>
+            }
+            <div class="mini-card-info">
+              <p class="mini-card-title">{{ content.title }}</p>
+              <p class="mini-card-type">{{ getTypeLabel(content.type) }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+  <!-- Aggiunti di recente -->
+  @if (recentContents.length > 0) {
+    <div class="content-section">
+      <div class="section-header">
+        <h2>🕐 Aggiunti di recente</h2>
+        <button mat-button (click)="goToContents()">Vedi tutti →</button>
+      </div>
+      <div class="mini-cards-grid">
+        @for (content of recentContents; track content.id) {
+          <div class="mini-card" (click)="openDetail(content)">
+            @if (content.coverUrl) {
+              <div class="mini-card-image">
+                <img [src]="content.coverUrl" [alt]="content.title"
+                     [ngStyle]="{'object-position': 'center ' + (content.imagePosition ?? 50) + '%'}">
+              </div>
+            } @else {
+              <div class="mini-card-no-image">{{ content.title[0] }}</div>
+            }
+            <div class="mini-card-info">
+              <p class="mini-card-title">{{ content.title }}</p>
+              <p class="mini-card-type">{{ getTypeLabel(content.type) }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+  <!-- Categorie -->
+  <div class="content-section">
+    <div class="section-header">
+      <h2>🗂️ Esplora per categoria</h2>
+    </div>
+    <div class="categories-grid">
+      @for (cat of categories; track cat.type) {
+        <div class="category-card" (click)="goToCategory(cat.type)">
+          <span class="cat-icon">{{ cat.icon }}</span>
+          <span class="cat-label">{{ cat.label }}</span>
+        </div>
+      }
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,54 @@
+<div class="auth-wrapper">
+  <div class="auth-image">
+    <img src="assets/images/logo-square.svg" alt="Kivra" />
+    <div class="image-text">
+      <h2>Inizia con Kivra</h2>
+      <p>Crea il tuo account gratuitamente e inizia a tracciare i tuoi contenuti preferiti</p>
+      <ul class="features-list">
+        <li>🎬 Film e Serie TV</li>
+        <li>⛩️ Anime e Manga</li>
+        <li>📖 Libri</li>
+        <li>⭐ Valutazioni e note personali</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="auth-form">
+    <div class="form-container">
+      <h1>Registrati</h1>
+      <p class="subtitle">Crea il tuo account per iniziare</p>
+
+      <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Username</mat-label>
+          <input matInput [(ngModel)]="request.username" name="username" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" [(ngModel)]="request.email" name="email" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" [(ngModel)]="request.password" name="password" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Conferma Password</mat-label>
+          <input matInput type="password" [(ngModel)]="request.confirmPassword" name="confirmPassword" required />
+        </mat-form-field>
+
+        @if (errorMessage) {
+          <p class="error">{{ errorMessage }}</p>
+        }
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="loading" class="full-width submit-btn">
+          {{ loading ? 'Registrazione...' : 'Registrati' }}
+        </button>
+      </form>
+
+      <p class="switch-link">Hai già un account? <a routerLink="/login">Accedi</a></p>
+    </div>
+  </div>
+</div>

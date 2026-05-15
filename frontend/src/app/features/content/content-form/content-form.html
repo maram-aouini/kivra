@@ -1,0 +1,50 @@
+<h2 mat-dialog-title>{{ isEdit ? 'Modifica contenuto' : 'Aggiungi contenuto' }}</h2>
+
+<mat-dialog-content>
+  <form #contentFormRef="ngForm">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Titolo</mat-label>
+      <input matInput [(ngModel)]="request.title" name="title" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Tipo</mat-label>
+      <mat-select [(ngModel)]="request.type" name="type" required>
+        @for (type of contentTypes; track type.value) {
+          <mat-option [value]="type.value">{{ type.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Stato</mat-label>
+      <mat-select [(ngModel)]="request.status" name="status" required>
+        @for (status of contentStatuses; track status.value) {
+          <mat-option [value]="status.value">{{ status.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Valutazione (1-10)</mat-label>
+      <input matInput type="number" [(ngModel)]="request.rating" name="rating" min="1" max="10" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>URL Copertina</mat-label>
+      <input matInput [(ngModel)]="request.coverUrl" name="coverUrl" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Note</mat-label>
+      <textarea matInput [(ngModel)]="request.notes" name="notes" rows="3"></textarea>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Annulla</button>
+  <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="loading">
+    {{ loading ? 'Salvataggio...' : (isEdit ? 'Aggiorna' : 'Aggiungi') }}
+  </button>
+</mat-dialog-actions>

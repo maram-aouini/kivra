@@ -1,0 +1,44 @@
+<div class="auth-wrapper">
+  <div class="auth-image">
+    <img src="assets/images/logo-square.svg" alt="Kivra" />
+    <div class="image-text">
+      <h2>Bentornato su Kivra</h2>
+      <p>Tieni traccia di tutto ciò che guardi e leggi</p>
+      <ul class="features-list">
+        <li>🎬 Film e Serie TV</li>
+        <li>⛩️ Anime e Manga</li>
+        <li>📖 Libri</li>
+        <li>⭐ Valutazioni e note personali</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="auth-form">
+    <div class="form-container">
+      <h1>Accedi</h1>
+      <p class="subtitle">Inserisci le tue credenziali per continuare</p>
+
+      <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" [(ngModel)]="request.email" name="email" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" [(ngModel)]="request.password" name="password" required />
+        </mat-form-field>
+
+        @if (errorMessage) {
+          <p class="error">{{ errorMessage }}</p>
+        }
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="loading" class="full-width submit-btn">
+          {{ loading ? 'Accesso...' : 'Accedi' }}
+        </button>
+      </form>
+
+      <p class="switch-link">Non hai un account? <a routerLink="/register">Registrati</a></p>
+    </div>
+  </div>
+</div>
