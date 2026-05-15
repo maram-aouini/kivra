@@ -2,13 +2,13 @@
 .home-page-container {
   max-width: 1200px; /* Larghezza massima per desktop */
   margin: 0 auto; /* Centra il contenitore */
-  padding: 40px 20px; /* Padding verticale e orizzontale */
+  padding: 30px 20px; /* Padding verticale e orizzontale */
   overflow-x: hidden; /* Previene lo scroll orizzontale */
   text-align: center; /* Centra il testo e gli elementi di blocco */
 }
 
 .hero {
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,7 +16,7 @@
 }
 
 .home-logo {
-  width: 660px; /* Dimensione fissa per desktop */
+  width: 620px; /* Dimensione fissa per desktop */
   height: auto;
   margin-bottom: 10px;
 }
