@@ -109,6 +109,34 @@
     }
   </div>
 
+  <!-- Completati -->
+  <div class="content-section">
+    <div class="section-header">
+      <h2>✅ Completati</h2>
+      <button mat-button (click)="goToContents()">Vedi tutti →</button>
+    </div>
+    @if (completedContents.length > 0) {
+      <div class="mini-cards-grid">
+        @for (content of completedContents; track content.id) {
+          <div class="mini-card" (click)="openDetail(content)">
+            @if (content.coverUrl) {
+              <div class="mini-card-image">
+                <img [src]="content.coverUrl" [alt]="content.title"
+                     [ngStyle]="{'object-position': 'center ' + (content.imagePosition ?? 50) + '%'}">
+              </div>
+            } @else {
+              <div class="mini-card-no-image">{{ content.title[0] }}</div>
+            }
+            <div class="mini-card-info">
+              <p class="mini-card-title">{{ content.title }}</p>
+              <p class="mini-card-type">{{ getTypeLabel(content.type) }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+
   <!-- Categorie -->
   <div class="content-section">
     <div class="section-header">
