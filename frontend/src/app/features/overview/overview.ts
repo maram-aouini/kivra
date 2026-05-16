@@ -33,6 +33,7 @@ export class Overview implements OnInit {
   toStart = 0;
 
   inProgressContents: UserContent[] = [];
+  completedContents: UserContent[] = [];
   recentContents: UserContent[] = [];
 
   animatedTotal = 0;
@@ -70,6 +71,10 @@ export class Overview implements OnInit {
 
         this.inProgressContents = data
           .filter(c => c.status === 'IN_CORSO')
+          .slice(0, 6);
+
+        this.completedContents = data
+          .filter(c => c.status === 'COMPLETATO')
           .slice(0, 6);
 
         this.recentContents = [...data]
