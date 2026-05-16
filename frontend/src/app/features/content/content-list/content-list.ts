@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, HostListener } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
@@ -37,6 +37,7 @@ export class ContentList implements OnInit {
   selectedType: ContentType | undefined;
   selectedStatus: ContentStatus | undefined;
   searchQuery = '';
+  showBackToTop = false;
 
   contentTypes = [
     { value: undefined, label: 'Tutti i tipi' },
@@ -65,6 +66,18 @@ export class ContentList implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.selectedType = params['type'] as ContentType || undefined;
       this.loadContents();
+    });
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.showBackToTop = window.scrollY > 400;
+  }
+
+  scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
     });
   }
 

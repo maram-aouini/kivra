@@ -15,9 +15,9 @@
       <mat-icon matPrefix>search</mat-icon>
       <input matInput [(ngModel)]="searchQuery" (ngModelChange)="onSearchChange()" />
       @if (searchQuery) {
-        <button matSuffix mat-icon-button (click)="searchQuery = ''; onSearchChange()">
-          <mat-icon>close</mat-icon>
-        </button>
+      <button matSuffix mat-icon-button (click)="searchQuery = ''; onSearchChange()">
+        <mat-icon>close</mat-icon>
+      </button>
       }
     </mat-form-field>
 
@@ -25,7 +25,7 @@
       <mat-label>Tipo</mat-label>
       <mat-select [(ngModel)]="selectedType" (ngModelChange)="onFilterChange()">
         @for (type of contentTypes; track type.value) {
-          <mat-option [value]="type.value">{{ type.label }}</mat-option>
+        <mat-option [value]="type.value">{{ type.label }}</mat-option>
         }
       </mat-select>
     </mat-form-field>
@@ -34,35 +34,39 @@
       <mat-label>Stato</mat-label>
       <mat-select [(ngModel)]="selectedStatus" (ngModelChange)="onFilterChange()">
         @for (status of contentStatuses; track status.value) {
-          <mat-option [value]="status.value">{{ status.label }}</mat-option>
+        <mat-option [value]="status.value">{{ status.label }}</mat-option>
         }
       </mat-select>
     </mat-form-field>
   </div>
 
   @if (loading) {
-    <div class="spinner-container">
-      <mat-spinner />
-    </div>
+  <div class="spinner-container">
+    <mat-spinner />
+  </div>
   } @else if (filteredContents.length === 0 && searchQuery) {
-    <div class="empty-state">
-      <mat-icon>search_off</mat-icon>
-      <p>Nessun risultato per "<strong>{{ searchQuery }}</strong>"</p>
-    </div>
+  <div class="empty-state">
+    <mat-icon>search_off</mat-icon>
+    <p>Nessun risultato per "<strong>{{ searchQuery }}</strong>"</p>
+  </div>
   } @else if (filteredContents.length === 0) {
-    <div class="empty-state">
-      <mat-icon>movie</mat-icon>
-      <p>Nessun contenuto trovato. Aggiungine uno!</p>
-    </div>
+  <div class="empty-state">
+    <mat-icon>movie</mat-icon>
+    <p>Nessun contenuto trovato. Aggiungine uno!</p>
+  </div>
   } @else {
-    <p class="results-count">{{ filteredContents.length }} risultati</p>
-    <div class="cards-grid">
-      @for (content of filteredContents; track content.id) {
-        <app-content-card
-          [content]="content"
-          (edit)="openEditDialog($event)"
-          (delete)="onDelete($event)" />
-      }
-    </div>
+  <p class="results-count">{{ filteredContents.length }} risultati</p>
+  <div class="cards-grid">
+    @for (content of filteredContents; track content.id) {
+    <app-content-card [content]="content" (edit)="openEditDialog($event)" (delete)="onDelete($event)" />
+    }
+  </div>
+  }
+
+  <!-- Pulsante Torna Su -->
+  @if (showBackToTop) {
+  <button mat-fab color="accent" class="back-to-top-btn" (click)="scrollToTop()" title="Torna su">
+    <mat-icon>keyboard_arrow_up</mat-icon>
+  </button>
   }
 </div>
