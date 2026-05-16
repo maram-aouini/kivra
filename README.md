@@ -16,6 +16,14 @@
 
 ---
 
+## 📸 Screenshot
+
+<img width="1920" height="1103" alt="image" src="https://github.com/user-attachments/assets/1e8ff6e0-c84a-4530-bc18-7b1e3d45f86c" />
+<img width="1920" height="942" alt="image" src="https://github.com/user-attachments/assets/d872303c-8f80-4e2c-859b-b2eb5a294505" />
+<img width="1194" height="1317" alt="image" src="https://github.com/user-attachments/assets/d1970410-93f8-43df-9757-e72e4eaf1ab2" />
+
+---
+
 ## 🛠️ Tech Stack
 
 ### Backend
@@ -126,17 +134,6 @@ Per il deploy, configura le seguenti variabili d'ambiente nel backend:
 | `DB_USERNAME` | Username del database |
 | `DB_PASSWORD` | Password del database |
 | `JWT_SECRET` | Chiave segreta per i token JWT |
-
----
-
-## 📸 Screenshot
-
-<img width="1920" height="1103" alt="image" src="https://github.com/user-attachments/assets/1e8ff6e0-c84a-4530-bc18-7b1e3d45f86c" />
-<img width="1920" height="942" alt="image" src="https://github.com/user-attachments/assets/d872303c-8f80-4e2c-859b-b2eb5a294505" />
-<img width="1194" height="1317" alt="image" src="https://github.com/user-attachments/assets/d1970410-93f8-43df-9757-e72e4eaf1ab2" />
-
-
-
 
 ---
 
