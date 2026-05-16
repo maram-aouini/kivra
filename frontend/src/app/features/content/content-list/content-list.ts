@@ -65,6 +65,7 @@ export class ContentList implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.selectedType = params['type'] as ContentType || undefined;
+      this.selectedStatus = params['status'] as ContentStatus || undefined;
       this.loadContents();
     });
   }

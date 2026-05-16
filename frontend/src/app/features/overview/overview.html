@@ -57,7 +57,7 @@
   <div class="content-section">
     <div class="section-header">
       <h2>▶️ In corso</h2>
-      <button mat-button (click)="goToContents()">Vedi tutti →</button>
+      <button mat-button (click)="goToContents('IN_CORSO')">Vedi tutti →</button>
     </div>
     @if (inProgressContents.length > 0) {
       <div class="mini-cards-grid">
@@ -113,7 +113,7 @@
   <div class="content-section">
     <div class="section-header">
       <h2>✅ Completati</h2>
-      <button mat-button (click)="goToContents()">Vedi tutti →</button>
+      <button mat-button (click)="goToContents('COMPLETATO')">Vedi tutti →</button>
     </div>
     @if (completedContents.length > 0) {
       <div class="mini-cards-grid">

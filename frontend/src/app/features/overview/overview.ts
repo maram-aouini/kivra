@@ -135,8 +135,8 @@ export class Overview implements OnInit {
     this.router.navigate(['/contents'], { queryParams: { type } });
   }
 
-  goToContents() {
-    this.router.navigate(['/contents']);
+  goToContents(status?: string) {
+    this.router.navigate(['/contents'], { queryParams: status ? { status } : {} });
   }
 
   getTypeLabel(type: string): string {
