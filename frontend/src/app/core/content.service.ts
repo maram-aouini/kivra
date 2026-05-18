@@ -8,14 +8,15 @@ import { UserContent, UserContentRequest, ContentType, ContentStatus } from '../
 })
 export class ContentService {
 
-  private apiUrl = 'https://kivra-a5su.onrender.com/api/contents';
+  private apiUrl = 'https://kivra-a5su.onrender.com/api/contents'; // Assicurati che questo URL sia corretto
 
   constructor(private http: HttpClient) {}
 
-  getAll(type?: ContentType, status?: ContentStatus): Observable<UserContent[]> {
+  getAll(type?: ContentType, status?: ContentStatus, favorite?: boolean): Observable<UserContent[]> {
     let params = new HttpParams();
     if (type) params = params.set('type', type);
     if (status) params = params.set('status', status);
+    if (favorite !== undefined) params = params.set('favorite', favorite.toString());
     return this.http.get<UserContent[]>(this.apiUrl, { params });
   }
 
