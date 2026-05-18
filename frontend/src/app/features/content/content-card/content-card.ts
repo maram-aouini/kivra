@@ -37,6 +37,8 @@ export class ContentCard implements OnInit {
   dragStartY = 0;
   dragStartPosition = 50;
   repositionMode = false;
+  hasDragged = false;
+  totalDragDistance = 0;
 
   constructor(
     private contentService: ContentService,
@@ -59,35 +61,37 @@ export class ContentCard implements OnInit {
   }
 
   onMouseDown(event: MouseEvent) {
-  if (!this.repositionMode) return;
-  this.isDragging = true;
-  this.dragStartY = event.clientY;
-  this.dragStartPosition = this.imagePosition;
-  event.preventDefault();
-  event.stopPropagation();
-}
+    if (!this.repositionMode) return;
+    this.isDragging = true;
+    this.totalDragDistance = 0;
+    this.dragStartY = event.clientY;
+    this.dragStartPosition = this.imagePosition;
+    event.preventDefault();
+  }
 
   onMouseMove(event: MouseEvent) {
     if (!this.isDragging || !this.repositionMode) return;
     const deltaY = event.clientY - this.dragStartY;
+    this.totalDragDistance = Math.abs(deltaY);
     const newPosition = this.dragStartPosition + (deltaY / 2);
     this.imagePosition = Math.min(100, Math.max(0, newPosition));
     event.preventDefault();
   }
 
-  hasDragged = false;
-
-onMouseUp() {
-  if (!this.isDragging) return;
-  this.hasDragged = true;
-  this.isDragging = false;
-  this.savePosition();
-  setTimeout(() => this.hasDragged = false, 100);
-}
+  onMouseUp() {
+    if (!this.isDragging) return;
+    this.isDragging = false;
+    if (this.totalDragDistance > 5) {
+      this.hasDragged = true;
+      this.savePosition();
+      setTimeout(() => this.hasDragged = false, 200);
+    }
+  }
 
   onTouchStart(event: TouchEvent) {
     if (!this.repositionMode) return;
     this.isDragging = true;
+    this.totalDragDistance = 0;
     this.dragStartY = event.touches[0].clientY;
     this.dragStartPosition = this.imagePosition;
   }
@@ -95,18 +99,21 @@ onMouseUp() {
   onTouchMove(event: TouchEvent) {
     if (!this.isDragging || !this.repositionMode) return;
     const deltaY = event.touches[0].clientY - this.dragStartY;
+    this.totalDragDistance = Math.abs(deltaY);
     const newPosition = this.dragStartPosition + (deltaY / 2);
     this.imagePosition = Math.min(100, Math.max(0, newPosition));
     event.preventDefault();
   }
 
   onTouchEnd() {
-  if (!this.isDragging) return;
-  this.hasDragged = true;
-  this.isDragging = false;
-  this.savePosition();
-  setTimeout(() => this.hasDragged = false, 100);
-}
+    if (!this.isDragging) return;
+    this.isDragging = false;
+    if (this.totalDragDistance > 5) {
+      this.hasDragged = true;
+      this.savePosition();
+      setTimeout(() => this.hasDragged = false, 200);
+    }
+  }
 
   savePosition() {
     const request = {
@@ -135,15 +142,15 @@ onMouseUp() {
   }
 
   openDetail() {
-  if (this.hasDragged || this.repositionMode) return;
-  this.dialog.open(ContentDetail, {
-    width: '780px',
-    minHeight: '500px',
-    maxWidth: '95vw',
-    data: this.content,
-    panelClass: 'detail-dialog'
-  });
-}
+    if (this.hasDragged || this.repositionMode) return;
+    this.dialog.open(ContentDetail, {
+      width: '780px',
+      minHeight: '500px',
+      maxWidth: '95vw',
+      data: this.content,
+      panelClass: 'detail-dialog'
+    });
+  }
 
   getStatusLabel(status: string): string {
     const map: any = {
