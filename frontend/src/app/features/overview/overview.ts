@@ -154,8 +154,15 @@ export class Overview implements OnInit {
     this.router.navigate(['/contents'], { queryParams: { type } });
   }
 
-  goToContents(status?: string) {
-    this.router.navigate(['/contents'], { queryParams: status ? { status } : {} });
+  goToContents(status?: string, favorite?: boolean) {
+    const queryParams: any = {};
+    if (status) {
+      queryParams.status = status;
+    }
+    if (favorite !== undefined) {
+      queryParams.favorite = favorite;
+    }
+    this.router.navigate(['/contents'], { queryParams });
   }
 
   getTypeLabel(type: string): string {
