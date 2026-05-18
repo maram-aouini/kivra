@@ -88,7 +88,7 @@ export class Overview implements OnInit {
           .filter(c => c.status === 'COMPLETATO')
           .slice(0, 6);
 
-        this.favoriteContents = data.filter(c => c.favorite).slice(0, 6);
+        this.favoriteContents = data.filter(c => !!c.favorite).slice(0, 6);
 
         this.recentContents = [...data]
           .sort((a, b) => new Date(b.createdAt!).getTime() - new Date(a.createdAt!).getTime())

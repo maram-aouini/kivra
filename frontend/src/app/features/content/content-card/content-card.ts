@@ -63,8 +63,25 @@ export class ContentCard implements OnInit {
 
   toggleFavorite(event: Event) {
     event.stopPropagation();
-    this.contentService.toggleFavorite(this.content.id).subscribe(updated => {
-      this.content = { ...this.content, favorite: updated.favorite };
+    
+    // Creiamo la richiesta di aggiornamento includendo tutti i campi esistenti
+    // ma invertendo lo stato di "favorite"
+    const request = {
+      title: this.content.title,
+      type: this.content.type,
+      status: this.content.status,
+      coverUrl: this.content.coverUrl,
+      description: this.content.description,
+      rating: this.content.rating,
+      notes: this.content.notes,
+      startDate: this.content.startDate,
+      endDate: this.content.endDate,
+      imagePosition: this.content.imagePosition,
+      favorite: !this.content.favorite
+    };
+
+    this.contentService.update(this.content.id, request).subscribe(updated => {
+      this.content = updated;
       this.favoriteToggled.emit(this.content);
     });
   }
