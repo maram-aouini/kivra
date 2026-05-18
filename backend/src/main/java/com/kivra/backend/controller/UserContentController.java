@@ -47,6 +47,14 @@ public class UserContentController {
                 userContentService.update(userDetails.getUsername(), id, request));
     }
 
+    @PatchMapping("/{id}/favorite")
+    public ResponseEntity<UserContentResponse> toggleFavorite(
+            @AuthenticationPrincipal UserDetails userDetails,
+            @PathVariable Long id) {
+        return ResponseEntity.ok(
+                userContentService.toggleFavorite(userDetails.getUsername(), id));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(
             @AuthenticationPrincipal UserDetails userDetails,

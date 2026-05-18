@@ -31,6 +31,7 @@ export class ContentCard implements OnInit {
   @Input() content!: UserContent;
   @Output() edit = new EventEmitter<UserContent>();
   @Output() delete = new EventEmitter<number>();
+  @Output() favoriteToggled = new EventEmitter<UserContent>();
 
   imagePosition = 50;
   isDragging = false;
@@ -58,6 +59,14 @@ export class ContentCard implements OnInit {
 
   toggleRepositionMode() {
     this.repositionMode = !this.repositionMode;
+  }
+
+  toggleFavorite(event: MouseEvent) {
+    event.stopPropagation();
+    this.contentService.toggleFavorite(this.content.id).subscribe(updated => {
+      this.content = { ...this.content, favorite: updated.favorite };
+      this.favoriteToggled.emit(this.content);
+    });
   }
 
   onMouseDown(event: MouseEvent) {
@@ -126,7 +135,8 @@ export class ContentCard implements OnInit {
       notes: this.content.notes,
       startDate: this.content.startDate,
       endDate: this.content.endDate,
-      imagePosition: Math.round(this.imagePosition)
+      imagePosition: Math.round(this.imagePosition),
+      favorite: this.content.favorite
     };
     this.contentService.update(this.content.id, request).subscribe();
   }

@@ -97,3 +97,28 @@ mat-card-actions {
   margin-top: auto;
   border-top: 1px solid rgba(77, 182, 172, 0.1);
 }
+
+.favorite-btn {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(0,0,0,0.5) !important;
+  color: white !important;
+
+  &:hover {
+    background: rgba(0,0,0,0.7) !important;
+  }
+
+  .favorited {
+    color: #f48fb1 !important;
+  }
+}
+
+.favorite-btn-no-image {
+  margin-left: auto;
+  color: #78909c;
+
+  .favorited {
+    color: #f48fb1 !important;
+  }
+}

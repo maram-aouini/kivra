@@ -59,6 +59,7 @@ public class UserContentService {
         content.setDescription(request.getDescription());
         content.setRating(request.getRating());
         content.setNotes(request.getNotes());
+        content.setFavorite(request.isFavorite());
         content.setStartDate(request.getStartDate());
         content.setEndDate(request.getEndDate());
         content.setImagePosition(request.getImagePosition());
@@ -80,6 +81,7 @@ public class UserContentService {
         content.setDescription(request.getDescription());
         content.setRating(request.getRating());
         content.setNotes(request.getNotes());
+        content.setFavorite(request.isFavorite());
         content.setStartDate(request.getStartDate());
         content.setEndDate(request.getEndDate());
         content.setImagePosition(request.getImagePosition());
@@ -93,4 +95,12 @@ public class UserContentService {
                 .orElseThrow(() -> new RuntimeException("Contenuto non trovato"));
         userContentRepository.delete(content);
     }
+
+    public UserContentResponse toggleFavorite(String email, Long id) {
+    User user = getUserByEmail(email);
+    UserContent content = userContentRepository.findByIdAndUserId(id, user.getId())
+            .orElseThrow(() -> new RuntimeException("Contenuto non trovato"));
+    content.setFavorite(!content.isFavorite());
+    return UserContentResponse.fromEntity(userContentRepository.save(content));
+}
 }

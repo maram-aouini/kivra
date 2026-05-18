@@ -25,6 +25,7 @@ public class UserContentRequest {
     private String externalId;
     private String coverUrl;
     private String description;
+    private boolean favorite = false;
 
     @Min(1) @Max(10)
     private Integer rating;

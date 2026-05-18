@@ -24,6 +24,7 @@ public class UserContentResponse {
     private LocalDate endDate;
     private LocalDateTime createdAt;
     private Integer imagePosition;
+    private boolean favorite;
 
     public static UserContentResponse fromEntity(UserContent uc) {
         UserContentResponse res = new UserContentResponse();
@@ -40,6 +41,7 @@ public class UserContentResponse {
         res.setEndDate(uc.getEndDate());
         res.setCreatedAt(uc.getCreatedAt());
         res.setImagePosition(uc.getImagePosition());
+        res.setFavorite(uc.isFavorite());
         return res;
     }
 }

@@ -54,6 +54,9 @@ public class UserContent {
     @Column(columnDefinition = "TEXT")
     private String notes;
 
+    @Column(nullable = false)
+    private boolean favorite = false;
+
     private LocalDate startDate;
     private LocalDate endDate;
     private Integer imagePosition; // 0-100, default 50 (centro)

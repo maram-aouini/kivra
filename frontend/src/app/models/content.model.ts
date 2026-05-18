@@ -10,6 +10,7 @@ export interface UserContent {
   coverUrl?: string;
   description?: string;
   rating?: number;
+  favorite?: boolean;
   notes?: string;
   startDate?: string;
   endDate?: string;
@@ -25,6 +26,7 @@ export interface UserContentRequest {
   coverUrl?: string;
   description?: string;
   rating?: number;
+  favorite?: boolean;
   notes?: string;
   startDate?: string;
   endDate?: string;

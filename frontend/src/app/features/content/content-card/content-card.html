@@ -19,6 +19,14 @@
                 [matTooltip]="repositionMode ? 'Fine riposizionamento' : 'Riposiziona immagine'">
           <mat-icon>{{ repositionMode ? 'check' : 'tune' }}</mat-icon>
         </button>
+        <button class="favorite-btn"
+                mat-icon-button
+                (click)="toggleFavorite($event)"
+                [matTooltip]="content.favorite ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti'">
+          <mat-icon [class.favorited]="content.favorite">
+            {{ content.favorite ? 'favorite' : 'favorite_border' }}
+          </mat-icon>
+        </button>
         @if (repositionMode) {
           <div class="reposition-hint">
             <mat-icon>drag_indicator</mat-icon>
@@ -31,6 +39,16 @@
     <mat-card-header>
       <mat-card-title>{{ content.title }}</mat-card-title>
       <mat-card-subtitle>{{ getTypeLabel(content.type) }}</mat-card-subtitle>
+      @if (!content.coverUrl) {
+        <button class="favorite-btn-no-image"
+                mat-icon-button
+                (click)="toggleFavorite($event)"
+                [matTooltip]="content.favorite ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti'">
+          <mat-icon [class.favorited]="content.favorite">
+            {{ content.favorite ? 'favorite' : 'favorite_border' }}
+          </mat-icon>
+        </button>
+      }
     </mat-card-header>
 
     <mat-card-content>

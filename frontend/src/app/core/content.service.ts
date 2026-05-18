@@ -27,6 +27,9 @@ export class ContentService {
     return this.http.put<UserContent>(`${this.apiUrl}/${id}`, request);
   }
 
+  toggleFavorite(id: number): Observable<UserContent> {
+    return this.http.patch<UserContent>(`${this.apiUrl}/${id}/favorite`, {});
+  }
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
