@@ -38,6 +38,12 @@
         }
       </mat-select>
     </mat-form-field>
+
+    <div class="filter-checkbox">
+      <mat-checkbox [(ngModel)]="showFavoritesOnly" (ngModelChange)="onFilterChange()" color="primary">
+        Solo Preferiti ❤️
+      </mat-checkbox>
+    </div>
   </div>
 
   @if (loading) {
@@ -58,7 +64,11 @@
   <p class="results-count">{{ filteredContents.length }} risultati</p>
   <div class="cards-grid">
     @for (content of filteredContents; track content.id) {
-    <app-content-card [content]="content" (edit)="openEditDialog($event)" (delete)="onDelete($event)" />
+    <app-content-card 
+      [content]="content" 
+      (edit)="openEditDialog($event)" 
+      (delete)="onDelete($event)"
+      (favoriteToggled)="onFavoriteToggled()" />
     }
   </div>
   }

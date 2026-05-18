@@ -7,6 +7,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ContentService } from '../../../core/content.service';
 import { UserContent, ContentType, ContentStatus } from '../../../models/content.model';
@@ -24,6 +25,7 @@ import { ContentForm } from '../content-form/content-form';
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
+    MatCheckboxModule,
     MatProgressSpinnerModule,
     ContentCard
   ],
@@ -36,6 +38,7 @@ export class ContentList implements OnInit {
   loading = false;
   selectedType: ContentType | undefined;
   selectedStatus: ContentStatus | undefined;
+  showFavoritesOnly = false;
   searchQuery = '';
   showBackToTop = false;
 
@@ -66,6 +69,7 @@ export class ContentList implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.selectedType = params['type'] as ContentType || undefined;
       this.selectedStatus = params['status'] as ContentStatus || undefined;
+      this.showFavoritesOnly = params['favorite'] === 'true';
       this.loadContents();
     });
   }
@@ -84,7 +88,7 @@ export class ContentList implements OnInit {
 
   loadContents() {
     this.loading = true;
-    this.contentService.getAll(this.selectedType, this.selectedStatus).subscribe({
+    this.contentService.getAll(this.selectedType, this.selectedStatus, this.showFavoritesOnly).subscribe({
       next: (data) => {
         this.allContents = [...data];
         this.applySearch();
@@ -138,6 +142,13 @@ export class ContentList implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) this.loadContents();
     });
+  }
+
+  onFavoriteToggled() {
+    // Se stiamo visualizzando solo i preferiti, ricarichiamo la lista
+    if (this.showFavoritesOnly) {
+      this.loadContents();
+    }
   }
 
   onDelete(id: number) {

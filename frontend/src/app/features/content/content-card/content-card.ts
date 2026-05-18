@@ -8,7 +8,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { ContentService } from '../../../core/content.service';
-import { UserContent } from '../../../models/content.model';
+import { UserContent, UserContentRequest } from '../../../models/content.model';
 import { ConfirmDialog } from '../../../shared/confirm-dialog';
 import { ContentDetail } from '../content-detail/content-detail';
 
@@ -63,21 +63,13 @@ export class ContentCard implements OnInit {
 
   toggleFavorite(event: Event) {
     event.stopPropagation();
-    
-    // Creiamo la richiesta di aggiornamento includendo tutti i campi esistenti
-    // ma invertendo lo stato di "favorite"
-    const request = {
-      title: this.content.title,
-      type: this.content.type,
-      status: this.content.status,
-      coverUrl: this.content.coverUrl,
-      description: this.content.description,
-      rating: this.content.rating,
-      notes: this.content.notes,
-      startDate: this.content.startDate,
-      endDate: this.content.endDate,
-      imagePosition: this.content.imagePosition,
-      favorite: !this.content.favorite
+
+    // Usiamo lo spread per mantenere tutti i campi esistenti (es. description, externalId)
+    // e sovrascriviamo solo favorite e la posizione corrente dell'immagine
+    const request: UserContentRequest = {
+      ...this.content,
+      favorite: !this.content.favorite,
+      imagePosition: Math.round(this.imagePosition)
     };
 
     this.contentService.update(this.content.id, request).subscribe(updated => {
@@ -142,19 +134,11 @@ export class ContentCard implements OnInit {
   }
 
   savePosition() {
-    const request = {
-      title: this.content.title,
-      type: this.content.type,
-      status: this.content.status,
-      coverUrl: this.content.coverUrl,
-      description: this.content.description,
-      rating: this.content.rating,
-      notes: this.content.notes,
-      startDate: this.content.startDate,
-      endDate: this.content.endDate,
-      imagePosition: Math.round(this.imagePosition),
-      favorite: this.content.favorite
+    const request: UserContentRequest = {
+      ...this.content,
+      imagePosition: Math.round(this.imagePosition)
     };
+    
     this.contentService.update(this.content.id, request).subscribe();
   }
 
