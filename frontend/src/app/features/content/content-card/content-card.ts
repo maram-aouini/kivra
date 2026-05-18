@@ -61,7 +61,7 @@ export class ContentCard implements OnInit {
     this.repositionMode = !this.repositionMode;
   }
 
-  toggleFavorite(event: MouseEvent) {
+  toggleFavorite(event: Event) {
     event.stopPropagation();
     this.contentService.toggleFavorite(this.content.id).subscribe(updated => {
       this.content = { ...this.content, favorite: updated.favorite };

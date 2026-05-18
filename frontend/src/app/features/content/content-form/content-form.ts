@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ContentService } from '../../../core/content.service';
 import { UserContent, UserContentRequest, ContentType, ContentStatus } from '../../../models/content.model';
 
@@ -16,7 +17,8 @@ import { UserContent, UserContentRequest, ContentType, ContentStatus } from '../
     MatButtonModule,
     MatInputModule,
     MatSelectModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatCheckboxModule
   ],
   templateUrl: './content-form.html',
   styleUrls: ['./content-form.scss']
@@ -25,7 +27,8 @@ export class ContentForm implements OnInit {
   request: UserContentRequest = {
     title: '',
     type: 'FILM',
-    status: 'DA_INIZIARE'
+    status: 'DA_INIZIARE',
+    favorite: false
   };
 
   loading = false;
@@ -63,7 +66,8 @@ export class ContentForm implements OnInit {
         rating: this.data.rating,
         notes: this.data.notes,
         startDate: this.data.startDate,
-        endDate: this.data.endDate
+        endDate: this.data.endDate,
+        favorite: this.data.favorite
       };
     }
   }

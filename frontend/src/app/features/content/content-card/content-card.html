@@ -21,7 +21,7 @@
         </button>
         <button class="favorite-btn"
                 mat-icon-button
-                (click)="toggleFavorite($event)"
+                (click)="toggleFavorite($event); $event.stopPropagation()"
                 [matTooltip]="content.favorite ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti'">
           <mat-icon [class.favorited]="content.favorite">
             {{ content.favorite ? 'favorite' : 'favorite_border' }}
@@ -42,7 +42,7 @@
       @if (!content.coverUrl) {
         <button class="favorite-btn-no-image"
                 mat-icon-button
-                (click)="toggleFavorite($event)"
+                (click)="toggleFavorite($event); $event.stopPropagation()"
                 [matTooltip]="content.favorite ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti'">
           <mat-icon [class.favorited]="content.favorite">
             {{ content.favorite ? 'favorite' : 'favorite_border' }}

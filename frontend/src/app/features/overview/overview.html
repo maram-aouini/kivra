@@ -33,27 +33,7 @@
     </div>
   </div>
 
-  <!-- Barre di progresso per tipo -->
-  <div class="type-progress-section">
-    <h2>Distribuzione per tipo</h2>
-    <div class="progress-bars">
-      @for (stat of typeStats; track stat.type) {
-        <div class="progress-row" (click)="goToCategory(stat.type)">
-          <div class="progress-label">
-            <span>{{ stat.icon }} {{ stat.label }}</span>
-            <span class="progress-count">{{ stat.count }} <span class="percentage">({{ stat.percentage | number:'1.0-0' }}%)</span></span>
-          </div>
-          <div class="progress-track">
-            <div class="progress-fill"
-                 [ngStyle]="{'width': getProgressWidth(stat.count), 'background': stat.color}">
-            </div>
-          </div>
-        </div>
-      }
-    </div>
-  </div>
-
-  <!-- Favoriti -->
+  <!-- Favoriti (Spostati qui per maggiore visibilità) -->
   @if (favoriteContents.length > 0) {
     <div class="content-section">
       <div class="section-header">
@@ -80,6 +60,26 @@
       </div>
     </div>
   }
+
+  <!-- Barre di progresso per tipo -->
+  <div class="type-progress-section">
+    <h2>Distribuzione per tipo</h2>
+    <div class="progress-bars">
+      @for (stat of typeStats; track stat.type) {
+        <div class="progress-row" (click)="goToCategory(stat.type)">
+          <div class="progress-label">
+            <span>{{ stat.icon }} {{ stat.label }}</span>
+            <span class="progress-count">{{ stat.count }} <span class="percentage">({{ stat.percentage | number:'1.0-0' }}%)</span></span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill"
+                 [ngStyle]="{'width': getProgressWidth(stat.count), 'background': stat.color}">
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
 
   <!-- In corso -->
   <div class="content-section">

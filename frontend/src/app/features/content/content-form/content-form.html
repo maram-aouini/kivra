@@ -39,6 +39,12 @@
       <mat-label>Note</mat-label>
       <textarea matInput [(ngModel)]="request.notes" name="notes" rows="3"></textarea>
     </mat-form-field>
+
+    <div class="form-row">
+      <mat-checkbox [(ngModel)]="request.favorite" name="favorite" color="primary">
+        Aggiungi ai preferiti ❤️
+      </mat-checkbox>
+    </div>
   </form>
 </mat-dialog-content>
 
