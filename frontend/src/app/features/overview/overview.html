@@ -37,8 +37,8 @@
   @if (favoriteContents.length > 0) {
     <div class="content-section">
       <div class="section-header">
-        <h2>❤️ Preferiti</h2> 
-        <button mat-button (click)="goToContents(undefined, true)">Vedi tutti →</button>
+        <h2>❤️ Preferiti</h2>
+        <a mat-button [routerLink]="['/contents']" [queryParams]="{ favorite: 'true' }">Vedi tutti →</a>
       </div>
       <div class="mini-cards-grid">
         @for (content of favoriteContents; track content.id) {

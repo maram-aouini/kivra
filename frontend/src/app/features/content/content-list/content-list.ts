@@ -105,14 +105,21 @@ export class ContentList implements OnInit {
   }
 
   applySearch() {
-    if (!this.searchQuery.trim()) {
-      this.filteredContents = [...this.allContents];
-    } else {
-      const query = this.searchQuery.toLowerCase().trim();
-      this.filteredContents = this.allContents.filter(c =>
-        c.title.toLowerCase().includes(query)
-      );
+    let filtered = [...this.allContents];
+
+    // Applica il filtro preferiti se attivo
+    if (this.showFavoritesOnly) {
+      // Assicurati che la proprietà nel tuo modello si chiami 'favorite' o 'isFavorite'
+      filtered = filtered.filter(c => c.favorite === true);
     }
+
+    // Applica la ricerca testuale se presente
+    const query = this.searchQuery.toLowerCase().trim();
+    if (query) {
+      filtered = filtered.filter(c => c.title.toLowerCase().includes(query));
+    }
+
+    this.filteredContents = filtered;
     this.cdr.detectChanges();
   }
 

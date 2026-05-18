@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
@@ -30,7 +30,8 @@ interface TypeStat {
     MatChipsModule,
     MatDialogModule,
     NgStyle,
-    DecimalPipe
+    DecimalPipe,
+    RouterLink
   ],
   templateUrl: './overview.html',
   styleUrl: './overview.scss'
