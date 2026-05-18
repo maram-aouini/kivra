@@ -167,6 +167,13 @@
   .progress-count {
     color: #ffffff;
     font-weight: 600;
+
+    .percentage {
+      font-weight: 400;
+      font-size: 0.85em;
+      color: #abe0fa;
+      margin-left: 4px;
+    }
   }
 }
 

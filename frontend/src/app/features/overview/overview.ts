@@ -10,8 +10,17 @@ import { ContentService } from '../../core/content.service';
 import { UserContent } from '../../models/content.model';
 import { AuthService } from '../../core/auth.service';
 import { ContentDetail } from '../content/content-detail/content-detail';
-import { NgStyle } from '@angular/common';
+import { NgStyle, DecimalPipe } from '@angular/common';
 
+// Define an interface for typeStats items to include the percentage
+interface TypeStat {
+  label: string;
+  type: string;
+  icon: string;
+  count: number;
+  color: string;
+  percentage?: number; // Add optional percentage property
+}
 @Component({
   selector: 'app-overview',
   imports: [
@@ -20,7 +29,8 @@ import { NgStyle } from '@angular/common';
     MatCardModule,
     MatChipsModule,
     MatDialogModule,
-    NgStyle
+    NgStyle,
+    DecimalPipe
   ],
   templateUrl: './overview.html',
   styleUrl: './overview.scss'
@@ -40,8 +50,8 @@ export class Overview implements OnInit {
   animatedInProgress = 0;
   animatedCompleted = 0;
   animatedToStart = 0;
-
-  typeStats: { label: string, type: string, icon: string, count: number, color: string }[] = [];
+  
+  typeStats: TypeStat[] = []; // Use the new interface
 
   categories = [
     { label: 'Film', type: 'FILM', icon: '🎬' },
@@ -81,14 +91,20 @@ export class Overview implements OnInit {
           .sort((a, b) => new Date(b.createdAt!).getTime() - new Date(a.createdAt!).getTime())
           .slice(0, 6);
 
-        this.typeStats = [
+        // Initial population of typeStats
+        const rawTypeStats = [
           { label: 'Film', type: 'FILM', icon: '🎬', count: data.filter(c => c.type === 'FILM').length, color: '#ff7043' },
           { label: 'Serie TV', type: 'SERIE_TV', icon: '📺', count: data.filter(c => c.type === 'SERIE_TV').length, color: '#ab47bc' },
           { label: 'Anime', type: 'ANIME', icon: '⛩️', count: data.filter(c => c.type === 'ANIME').length, color: '#26c6da' },
           { label: 'Manga', type: 'MANGA', icon: '📚', count: data.filter(c => c.type === 'MANGA').length, color: '#66bb6a' },
           { label: 'Libri', type: 'LIBRO', icon: '📖', count: data.filter(c => c.type === 'LIBRO').length, color: '#ffa726' }
         ];
-
+        
+        // Calculate percentages
+        this.typeStats = rawTypeStats.map(stat => ({
+          ...stat,
+          percentage: this.totalContents > 0 ? (stat.count / this.totalContents) * 100 : 0
+        }));
         this.animateCounters();
         this.cdr.detectChanges();
       }

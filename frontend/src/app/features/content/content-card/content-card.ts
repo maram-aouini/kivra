@@ -59,12 +59,13 @@ export class ContentCard implements OnInit {
   }
 
   onMouseDown(event: MouseEvent) {
-    if (!this.repositionMode) return;
-    this.isDragging = true;
-    this.dragStartY = event.clientY;
-    this.dragStartPosition = this.imagePosition;
-    event.preventDefault();
-  }
+  if (!this.repositionMode) return;
+  this.isDragging = true;
+  this.dragStartY = event.clientY;
+  this.dragStartPosition = this.imagePosition;
+  event.preventDefault();
+  event.stopPropagation();
+}
 
   onMouseMove(event: MouseEvent) {
     if (!this.isDragging || !this.repositionMode) return;
@@ -74,11 +75,15 @@ export class ContentCard implements OnInit {
     event.preventDefault();
   }
 
-  onMouseUp() {
-    if (!this.isDragging) return;
-    this.isDragging = false;
-    this.savePosition();
-  }
+  hasDragged = false;
+
+onMouseUp() {
+  if (!this.isDragging) return;
+  this.hasDragged = true;
+  this.isDragging = false;
+  this.savePosition();
+  setTimeout(() => this.hasDragged = false, 100);
+}
 
   onTouchStart(event: TouchEvent) {
     if (!this.repositionMode) return;
@@ -96,10 +101,12 @@ export class ContentCard implements OnInit {
   }
 
   onTouchEnd() {
-    if (!this.isDragging) return;
-    this.isDragging = false;
-    this.savePosition();
-  }
+  if (!this.isDragging) return;
+  this.hasDragged = true;
+  this.isDragging = false;
+  this.savePosition();
+  setTimeout(() => this.hasDragged = false, 100);
+}
 
   savePosition() {
     const request = {
@@ -128,6 +135,7 @@ export class ContentCard implements OnInit {
   }
 
   openDetail() {
+  if (this.hasDragged || this.repositionMode) return;
   this.dialog.open(ContentDetail, {
     width: '780px',
     minHeight: '500px',

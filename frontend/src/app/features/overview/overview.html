@@ -41,7 +41,7 @@
         <div class="progress-row" (click)="goToCategory(stat.type)">
           <div class="progress-label">
             <span>{{ stat.icon }} {{ stat.label }}</span>
-            <span class="progress-count">{{ stat.count }}</span>
+            <span class="progress-count">{{ stat.count }} <span class="percentage">({{ stat.percentage | number:'1.0-0' }}%)</span></span>
           </div>
           <div class="progress-track">
             <div class="progress-fill"
